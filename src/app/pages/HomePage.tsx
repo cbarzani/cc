@@ -85,12 +85,7 @@ export function HomePage() {
             We craft cinematic experiences that resonate,
             inspire, and leave lasting impressions.
           </p>
-          <button
-            onClick={() => scrollToSection("portfolio")}
-            className="px-6 py-3 bg-primary text-primary-foreground rounded hover:scale-105 transition-transform duration-300 text-sm"
-          >
-            View Our Work
-          </button>
+          
         </div>
       </section>
 
