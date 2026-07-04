@@ -32,6 +32,7 @@ export function RegretPage() {
         description="REGRET (ندم) is a gripping Arabic family drama thriller by CC Film Company. Directed by REGA ALBARZNJI. 130 minutes. Watch the full film now or view on IMDb."
         keywords="REGRET film, ندم فيلم, REGRET 2025, Arabic film, Iraqi cinema, CC Film, CCFilm, family drama thriller, REGA ALBARZNJI, watch REGRET online, ندم فيلم عراقي"
         url="https://ccfilm.pro/regret"
+        image={`https://ccfilm.pro${regretPoster}`}
         structuredData={regretStructuredData}
       />
       {/* Hero Section */}
