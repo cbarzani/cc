@@ -1,10 +1,39 @@
 import regretPoster from '@/imports/IMG_1198.JPG';
 import ccFilmLogo from '@/imports/CCFILM_NEW_LOGO_.png';
 import { Mail, Phone, Film, ExternalLink, Instagram, Youtube, Facebook } from 'lucide-react';
+import { SEO } from '@/app/components/SEO';
 
 export function RegretPage() {
+  const regretStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Movie",
+    "name": "REGRET",
+    "alternateName": "ندم",
+    "description": "Spanning three distinct time periods, REGRET follows a young boy whose passion for filmmaking leads to a suspenseful thriller with a reality-shattering twist. A family drama in Arabic.",
+    "director": { "@type": "Person", "name": "REGA ALBARZNJI" },
+    "productionCompany": { "@type": "Organization", "name": "CC Film Company" },
+    "genre": ["Family", "Drama", "Thriller"],
+    "inLanguage": "ar",
+    "datePublished": "2025",
+    "duration": "PT130M",
+    "url": "https://ccfilm.pro/regret",
+    "sameAs": "https://www.imdb.com/title/tt36294546/",
+    "actor": [
+      { "@type": "Person", "name": "Bakr Khald" },
+      { "@type": "Person", "name": "Baraa Alzubaidi" },
+      { "@type": "Person", "name": "Sara Aws" }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="REGRET (ندم) — CC Film Company | Watch the Full Film"
+        description="REGRET (ندم) is a gripping Arabic family drama thriller by CC Film Company. Directed by REGA ALBARZNJI. 130 minutes. Watch the full film now or view on IMDb."
+        keywords="REGRET film, ندم فيلم, REGRET 2025, Arabic film, Iraqi cinema, CC Film, CCFilm, family drama thriller, REGA ALBARZNJI, watch REGRET online, ندم فيلم عراقي"
+        url="https://ccfilm.pro/regret"
+        structuredData={regretStructuredData}
+      />
       {/* Hero Section */}
       <section className="min-h-screen flex items-center pt-20 px-6 md:px-12 bg-background">
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
@@ -42,9 +71,18 @@ export function RegretPage() {
             <div className="flex flex-wrap gap-2 pt-4">
               <span className="px-3 py-1 bg-card/80 border border-primary/30 rounded text-xs">Family, Drama</span>
               <span className="px-3 py-1 bg-card/80 border border-primary/30 rounded text-xs">2025</span>
-              
               <span className="px-3 py-1 bg-card/80 border border-primary/30 rounded text-xs">130 min</span>
             </div>
+
+            <a
+              href="https://purchase.ccfilm.pro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 mt-4 px-8 py-4 bg-primary text-black font-semibold text-lg rounded hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/30"
+            >
+              <Film className="w-5 h-5" />
+              Watch Full Film
+            </a>
           </div>
         </div>
       </section>
