@@ -1,5 +1,5 @@
 import image_CCFILM_NEW_LOGO__1 from '@/imports/CCFILM_NEW_LOGO_-1.png'
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Film, Camera, Users, Award, Mail, Phone, Instagram, Youtube, Facebook } from 'lucide-react';
 import ccFilmLogo from '@/imports/CCFILM_NEW_LOGO_.png';
 import heroVideo from '@/imports/CCFilm_Logo_REVAL_.mp4';
@@ -7,23 +7,20 @@ import { SEO } from '@/app/components/SEO';
 
 export function HomePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) {
-      // Set video to ready state and play immediately
-      videoRef.current.load();
-      const playPromise = videoRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.catch(err => {
-          console.log('Video autoplay failed:', err);
-          // Retry play after a brief moment
-          setTimeout(() => {
-            videoRef.current?.play();
-          }, 100);
-        });
-      }
-    }
+    const video = videoRef.current;
+    if (!video) return;
+
+    const tryPlay = () => {
+      video.play().catch(() => {
+        setTimeout(() => video.play().catch(() => {}), 200);
+      });
+    };
+
+    video.load();
+    tryPlay();
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -64,7 +61,7 @@ export function HomePage() {
         structuredData={homeStructuredData}
       />
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: 'radial-gradient(ellipse at 50% 40%, #1c1408 0%, #0a0a0a 65%)' }}>
         {/* Video Background */}
         <video
           ref={videoRef}
@@ -73,12 +70,11 @@ export function HomePage() {
           muted
           playsInline
           preload="auto"
-          className="absolute top-0 left-0 min-w-full min-h-full w-auto h-auto object-cover z-0"
-          style={{ opacity: 0.95 }}
+          className="absolute top-0 left-0 min-w-full min-h-full w-auto h-auto object-cover z-0 transition-opacity duration-1000"
+          style={{ opacity: videoReady ? 0.95 : 0 }}
+          onCanPlay={() => setVideoReady(true)}
           onLoadedMetadata={(e) => {
-            // Ensure video plays as soon as metadata is loaded
-            const video = e.currentTarget;
-            video.play().catch(err => console.log('Video play failed:', err));
+            e.currentTarget.play().catch(() => {});
           }}
         >
           <source src={heroVideo} type="video/mp4" />
