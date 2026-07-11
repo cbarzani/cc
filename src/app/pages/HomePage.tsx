@@ -239,6 +239,7 @@ export function HomePage() {
             </div>
             <p className="text-muted-foreground text-center">
               © 2025 CC Film Company. Creating compelling stories that inspire.
+              Made by Dolamari
             </p>
             <div className="flex gap-6">
               
